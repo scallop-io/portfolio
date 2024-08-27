@@ -37,7 +37,7 @@ const executor: FetcherExecutor = async (owner: string, cache: Cache) => {
     delegations.push(...res.delegationResponses);
     nextKey = res.pagination.nextKey as Uint8Array | null;
     offset = offset.add(limit);
-    if (offset.greaterThanOrEqual(res.pagination.total)) break;
+    if (offset.greaterThanOrEqual(res.pagination.total as Long)) break;
   } while (nextKey !== null && offset.lt(maxBalances));
 
   if (delegations.length === 0) return [];

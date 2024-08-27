@@ -30,7 +30,7 @@ export async function getAllBalances(allBalances: AllBalances, owner: string) {
     balances.push(...res.balances);
     nextKey = res.pagination.nextKey as Uint8Array | null;
     offset = offset.add(limit);
-    if (offset.greaterThanOrEqual(res.pagination.total)) break;
+    if (offset.greaterThanOrEqual(res.pagination.total as Long)) break;
   } while (nextKey !== null && offset.lt(maxBalances));
   return balances;
 }
